@@ -81,14 +81,10 @@ class BattleViewController: UIViewController {
         }
         
         enemyMP += 1
-        if playerMP >= 35{
+        if enemyMP >= 35{
             
-            
+            enemyAttack()
             enemyMP = 0
-            
-        }else{
-            
-            isPlayerAttackAvailable = false
             
         }
         
@@ -107,7 +103,7 @@ class BattleViewController: UIViewController {
         
         if playerHP <= 0{
             
-            //
+            finishBattle(vanishImageView: playerImageView, isPlayewWin: false)
             
         }
         
