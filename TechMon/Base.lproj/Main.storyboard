@@ -120,6 +120,9 @@
                                 <state key="normal" title="ファイア" backgroundImage="gold_button.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="fireAction" destination="gNo-qJ-4ss" eventType="touchUpInside" id="ldm-8S-Pq4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzL-hD-kz1">
                                 <rect key="frame" x="105" y="727" width="204" height="62"/>
@@ -128,6 +131,9 @@
                                 <state key="normal" title="ためる" backgroundImage="gold_button.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="tameruAction" destination="gNo-qJ-4ss" eventType="touchUpInside" id="3Ao-9p-AF5"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHb-Vg-CLe">
                                 <rect key="frame" x="197" y="52" width="188" height="146"/>
@@ -250,6 +256,7 @@
                         <outlet property="playerImageView" destination="iaI-on-2t7" id="k4E-9d-6zB"/>
                         <outlet property="playerMPLabel" destination="KJq-nb-iXx" id="iRS-6h-rAN"/>
                         <outlet property="playerNameLabel" destination="Jz8-By-hgz" id="M3Z-Ew-wbS"/>
+                        <outlet property="playerTPLabel" destination="MV6-ZC-V4y" id="4y1-0e-x73"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QpW-3A-Hph" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -13,6 +13,7 @@ class BattleViewController: UIViewController {
     @IBOutlet var playerImageView: UIImageView!
     @IBOutlet var playerHPLabel: UILabel!
     @IBOutlet var playerMPLabel: UILabel!
+    @IBOutlet var playerTPLabel: UILabel!
     
     @IBOutlet var enemyNameLabel: UILabel!
     @IBOutlet var enemyImageView: UIImageView!
@@ -24,6 +25,8 @@ class BattleViewController: UIViewController {
     var player: Character!
     var enemy : Character!
     
+    var probabbility : Int!
+    
     
 //    var playerHP: Int = 100
 //    var playerMP: Int = 0
@@ -32,6 +35,7 @@ class BattleViewController: UIViewController {
     
     var gameTimer: Timer!
     var isPlayerAttackAvailable: Bool = true
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +109,7 @@ class BattleViewController: UIViewController {
         techMonManager.playSE(fileName: "SE_attack")
         
         player.currentHP -= 20
+        criticalHit(dareni: "toPlayer")
         updateUI()
         
         judgeBattle()
@@ -115,9 +120,34 @@ class BattleViewController: UIViewController {
         
         playerHPLabel.text = "\(player.currentHP)/\(player.maxHP)"
         playerMPLabel.text = "\(player.currentMP)/\(player.maxMP)"
+        playerTPLabel.text = "\(player.currentTP)/\(player.maxTP)"
         
         enemyHPLabel.text = "\(enemy.currentHP)/\(enemy.maxHP)"
         enemyMPLabel.text = "\(enemy.currentMP)/\(enemy.maxMP)"
+        
+        
+    }
+    
+    
+    func criticalHit(dareni: String){
+        
+        probabbility = Int.random(in: 0...100)
+        
+        if probabbility > 20 {
+            
+            if dareni == "toPlayer" {
+                
+                player.currentHP -= 40
+            
+            }else if dareni == "toEnemy"{
+                
+                enemy.currentHP -= player.attackPoint * 2
+                
+            }
+            
+        }else{
+            
+        }
         
     }
     
@@ -171,7 +201,12 @@ class BattleViewController: UIViewController {
             techMonManager.damageAnimation(imageView: enemyImageView)
             techMonManager.playSE(fileName: "SE_attack")
             
-            enemy.currentHP -= 30
+            enemy.currentHP -= player.attackPoint
+            criticalHit(dareni: "toEnemy")
+            
+            player.currentTP += 10
+            maxTPCheck()
+            
             player.currentMP = 0
             
             updateUI()
@@ -182,7 +217,50 @@ class BattleViewController: UIViewController {
         
     }
     
-
-
+    func maxTPCheck(){
+        
+        if player.currentTP >= player.maxTP{
+            player.currentTP = player.maxTP
+        }else if player.currentTP <= 0{
+            player.currentTP = 0
+        }
+        
+    }
+    
+    @IBAction func tameruAction() {
+        
+        if  isPlayerAttackAvailable {
+            
+            techMonManager.playSE(fileName: "SE_charge")
+            player.currentTP += 40
+            maxTPCheck()
+            player.currentMP = 0
+            
+        }
+        
+        updateUI()
+        
+        
+    }
+    
+    @IBAction func fireAction() {
+        
+        if isPlayerAttackAvailable && player.currentTP >= 40{
+            
+            techMonManager.damageAnimation(imageView: enemyImageView)
+            techMonManager.playSE(fileName: "SE_fire")
+            
+            enemy.currentHP -= 100
+            
+            player.currentHP -= 40
+            maxTPCheck()
+            player.currentMP = 0
+            
+            judgeBattle()
+            
+        }
+        
+    }
+    
 }
 
