@@ -57,7 +57,7 @@ class BattleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        techMonManager.playBGM(fileName: "BGM_ battle001")
+        techMonManager.playBGM(fileName: "BGM_battle001")
     }
     
     override func viewWillDisappear(_ animated: Bool) {

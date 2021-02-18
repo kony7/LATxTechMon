@@ -46,13 +46,12 @@ class LobbyViewController: UIViewController {
             stamina -= 50
             staminaLabel.text = "\(stamina)/100"
             performSegue(withIdentifier: "toBattle", sender: nil)
+            
         }else{
-            let alert: UIAlertController = UIAlertController(title: "バトルに行けません", message: "スタミナが足りません", preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-                self.navigationController?.popViewController(animated: true)
-            }))
+            let alert = UIAlertController(title: "バトルに行けません", message: "スタミナが足りません", preferredStyle: .alert)
             
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler:nil ))
             present(alert, animated: true, completion: nil)
         }
         
